@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "description": "Metadata for planned, opt-in local classification skills. WASM binaries are intentionally not bundled.",
+  "skills": [
+    {
+      "id": "sms_filter",
+      "path": "skills/sms_filter/agent.wasm",
+      "source": "skills/sms_filter/agent.c",
+      "maxBytes": 5242880,
+      "consentNeeded": true,
+      "enabledByDefault": false
+    },
+    {
+      "id": "bank_classifier",
+      "path": "skills/bank_classifier/agent.wasm",
+      "source": "skills/bank_classifier/agent.c",
+      "maxBytes": 5242880,
+      "consentNeeded": true,
+      "enabledByDefault": false
+    },
+    {
+      "id": "family_urgent",
+      "path": "skills/family_urgent/agent.wasm",
+      "source": "skills/family_urgent/agent.c",
+      "maxBytes": 5242880,
+      "consentNeeded": true,
+      "enabledByDefault": false
+    },
+    {
+      "id": "call_filter",
+      "path": "skills/call_filter/agent.wasm",
+      "source": "skills/call_filter/agent.c",
+      "maxBytes": 5242880,
+      "consentNeeded": true,
+      "enabledByDefault": false
+    },
+    {
+      "id": "whatsapp_fyi",
+      "path": "skills/whatsapp_fyi/agent.wasm",
+      "source": "skills/whatsapp_fyi/agent.c",
+      "maxBytes": 5242880,
+      "consentNeeded": true,
+      "enabledByDefault": false
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+name = "focus-claw-consent"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+[[kv_namespaces]]
+binding = "CONSENT_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+ALLOWED_ORIGIN = "https://app.example.com"
+
+# Add RECEIPT_HMAC_KEY with: wrangler secret put RECEIPT_HMAC_KEY
+# Do not commit secrets or real namespace IDs.

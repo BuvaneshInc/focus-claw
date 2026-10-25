@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Focus Claw minimal consent receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "version",
+    "deviceTokenHash",
+    "receiptHash",
+    "createdAt",
+    "channels"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "deviceTokenHash": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "receiptHash": {
+      "type": "string",
+      "pattern": "^[a-fA-F0-9]{64}$"
+    },
+    "createdAt": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "channels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sms",
+        "calls",
+        "whatsapp",
+        "email",
+        "sync"
+      ],
+      "properties": {
+        "sms": {
+          "type": "boolean"
+        },
+        "calls": {
+          "type": "boolean"
+        },
+        "whatsapp": {
+          "type": "boolean"
+        },
+        "email": {
+          "type": "boolean"
+        },
+        "sync": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

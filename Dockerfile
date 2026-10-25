@@ -1,18 +1,13 @@
 FROM node:22-alpine AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install --no-audit --no-fund
 COPY . .
 RUN npm run build
 
-FROM node:22-alpine AS runtime
-ENV NODE_ENV=production
-WORKDIR /app
-COPY package*.json ./
-RUN npm install --omit=dev && npm cache clean --force
-COPY --from=build /app/server.js ./server.js
-COPY --from=build /app/public ./public
-COPY --from=build /app/node_modules/htmx.org ./node_modules/htmx.org
-EXPOSE 3000
-HEALTHCHECK --interval=30s --timeout=3s --start-period=10s --retries=3 CMD node -e "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
-CMD ["node", "server.js"]
+FROM nginx:1.27-alpine AS runtime
+COPY --from=build /app/dist /usr/share/nginx/html
+COPY deploy/nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 8080
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 CMD wget -q -O /dev/null http://127.0.0.1:8080/ || exit 1
+USER nginx

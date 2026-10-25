@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Focus Claw \u2014 Local-first demo",
+  "version": "0.1.0",
+  "description": "Demo extension shell. No message reading or background collection is enabled.",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_title": "Focus Claw"
+  },
+  "options_page": "options.html"
+}
