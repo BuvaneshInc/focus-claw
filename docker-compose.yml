@@ -1,0 +1,30 @@
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgres://metachat:metachat@db:5432/metachat
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: metachat
+      POSTGRES_USER: metachat
+      POSTGRES_PASSWORD: metachat
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U metachat -d metachat"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
